@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rt-chat
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rt-chat
+  template:
+    metadata:
+      labels:
+        app: rt-chat
+    spec:
+      containers:
+        - name: backend
+          image: <your_dockerhub_username>/rt-chat-backend:latest
+          ports:
+            - containerPort: 3000
+        - name: frontend
+          image: <your_dockerhub_username>/rt-chat-frontend:latest
+          ports:
+            - containerPort: 5173
